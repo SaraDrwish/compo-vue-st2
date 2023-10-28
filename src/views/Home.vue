@@ -1,9 +1,12 @@
 <template>
   <div class="home">
     <h2>Home</h2>
-    <PostLists v-if="shoePosts" :posts="posts" />
-    <button @click="shoePosts = ! shoePosts " >toggle</button>
-      <button @click="posts.pop()" >delete</button>
+    <div v-if="error"> {{ error }}</div>
+    <div v-if="posts.length">
+       <PostLists v-if="shoePosts" :posts="posts" />
+    </div>
+    <!-- <button @click="shoePosts = ! shoePosts " >toggle</button>
+      <button @click="posts.pop()" >delete</button> -->
   </div>
 </template>
 
@@ -20,24 +23,22 @@ export default {
 
     // json-server --watch data/db.json  .  ----  after i it 
 
-    const posts = ref([
-      // {
-      //   title: "welcome sara 1", body: "lorem11110lorem", id: 1
-      // },
-      // {
-      //   title: "welco2",
-      //   body: "lore loremlorem loremlore ljhjhjhjremlorem loremlorem loremlorem loremlorem loremlorem loremlorem", id: 2
-      // }
-    ]) 
+    const posts = ref([ ]) 
     const error = ref(null)
 
     const load = async () => {
       try {
         let data = await fetch("http://localhost:3000/posts")
         console.log(data)
+        if (!data.ok) {
+          throw Error( "data is not ok !!!!!!! no data available ")
+        }
+        posts.value = await data.json()
       }
       catch (err){
-        console.log("error : " + err)
+        error.value = err.message
+        console.log(error.value + "//////"  + "error : " + err.message)
+
       }
     }
 
@@ -45,7 +46,7 @@ export default {
 
     load()
  
-    return { posts  , shoePosts  }
+    return { posts  , error }
     
   }
 
