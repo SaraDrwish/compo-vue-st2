@@ -1,19 +1,32 @@
 {
+
+
   "posts": [
+
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "id" : 1 , 
+      "title" : "hello 1 ",
+      "body" : "loremcoding  lorem44545 8445 8484545 848541 5jldksmlmck ijsk",
+      "tags" : [
+        "coding",
+        "loading",
+        "new"
+      ]
+    },
+
+      {
+      "id" :2 , 
+      "title" : "hell2 ",
+      "body" : "lorem12 lorem12lorem12lorem12lorem12lorem12 lorem12vlorem12 lorem12lorem12 ",
+      "tags" : [
+        "loadingggg ",
+        "dev tools",
+        "newsss "
+      ]
     }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+
+    
+  ]
+
+
 }

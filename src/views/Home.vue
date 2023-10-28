@@ -3,17 +3,17 @@
     <h2>Home</h2>
     <div v-if="error"> {{ error }}</div>
     <div v-if="posts.length">
-       <PostLists v-if="shoePosts" :posts="posts" />
+       <PostLists  :posts="posts" />
     </div>
-    <!-- <button @click="shoePosts = ! shoePosts " >toggle</button>
-      <button @click="posts.pop()" >delete</button> -->
+    <div v-else >loading .... </div>
+ 
   </div>
 </template>
 
 <script>
 
 import PostLists from "../components/PostLists.vue"
-import { ref } from 'vue'
+import getPosts from "../composables/getPosts"
 
 export default {
 
@@ -23,32 +23,12 @@ export default {
 
     // json-server --watch data/db.json  .  ----  after i it 
 
-    const posts = ref([ ]) 
-    const error = ref(null)
-
-    const load = async () => {
-      try {
-        let data = await fetch("http://localhost:3000/posts")
-        console.log(data)
-        if (!data.ok) {
-          throw Error( "data is not ok !!!!!!! no data available ")
-        }
-        posts.value = await data.json()
-      }
-      catch (err){
-        error.value = err.message
-        console.log(error.value + "//////"  + "error : " + err.message)
-
-      }
-    }
-
-    const shoePosts = ref(true)
-
+    const { posts, error, load } = getPosts()
     load()
- 
-    return { posts  , error }
-    
+    return { posts, error }
+
   }
+  
 
 }
 
