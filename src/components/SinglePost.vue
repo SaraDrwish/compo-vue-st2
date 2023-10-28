@@ -1,8 +1,10 @@
 <template>
   <div class="singlePost">
+      <router-link  :to="{ name : 'Details' , params:{id : pst.id} }">   
+        <h3>{{ pst.title }}</h3>
+      </router-link>
     <h2> single Post page  </h2>
     <div class="pst">
-      <h3>{{ pst.title }}</h3>
       <p>{{ pst.body }}</p>
       <p>{{ pst.tag }}</p>
      <p v-for=" tg in pst.tag " :key="tg" > # {{ tg }}</p>

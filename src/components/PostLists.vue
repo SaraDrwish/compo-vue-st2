@@ -43,6 +43,8 @@ export default {
 <style>
 div{
   background-color: thistle ;
-  color: rgb(38, 38, 73);
+  color: rgb(94, 94, 152);
+  padding: 1%;
+  margin: 1%;
 }
 </style>

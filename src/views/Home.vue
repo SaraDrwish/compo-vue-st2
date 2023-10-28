@@ -42,6 +42,14 @@ export default {
   margin: 2%;
   padding: 2%;
 }
+a{
+  text-decoration: none;
+  /* display: flex; */
+  color: unset;
+  /* text-align: center; */
+  margin: auto;
+  /* padding: 1%; */
+}
 input{
   border: none;
   border-radius: .8rem;
@@ -69,6 +77,7 @@ p , h2{
   width: 25%;
   margin: 2%  auto;
   border-radius: 0.6rem;
+  width: 33%;
 }
 
 </style>
