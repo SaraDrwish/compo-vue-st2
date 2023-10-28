@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <h2>Home</h2>
-    <PostLists :posts="posts" />
+    <PostLists v-if="shoePosts" :posts="posts" />
+    <button @click="shoePosts = ! shoePosts " >toggle</button>
+      <button @click="posts.pop()" >delete</button>
   </div>
 </template>
 
@@ -16,17 +18,34 @@ export default {
   components: { PostLists } ,
   setup() {
 
+    // json-server --watch data/db.json  .  ----  after i it 
+
     const posts = ref([
-      {
-        title: "welcome sara 1", body: "lorem11110lorem", id: 1
-      },
-      {
-        title: "welco2",
-        body: "lore loremlorem loremlore ljhjhjhjremlorem loremlorem loremlorem loremlorem loremlorem loremlorem", id: 2
+      // {
+      //   title: "welcome sara 1", body: "lorem11110lorem", id: 1
+      // },
+      // {
+      //   title: "welco2",
+      //   body: "lore loremlorem loremlore ljhjhjhjremlorem loremlorem loremlorem loremlorem loremlorem loremlorem", id: 2
+      // }
+    ]) 
+    const error = ref(null)
+
+    const load = async () => {
+      try {
+        let data = await fetch("http://localhost:3000/posts")
+        console.log(data)
       }
-    ])
+      catch (err){
+        console.log("error : " + err)
+      }
+    }
+
+    const shoePosts = ref(true)
+
+    load()
  
-    return { posts }
+    return { posts  , shoePosts  }
     
   }
 
@@ -58,8 +77,9 @@ border-radius: 0.4rem;
 background-color: slategray;
 color: salmon;
 border: none;
-padding: 2%;
+padding: 1%  2%;
 cursor: pointer;
+margin: 2%;
 }
 p , h2{
   font-size: 19px;

@@ -17,7 +17,7 @@ export default {
   setup(props){
     // console.log(props)
     const snippt = computed(()=> { 
-      return props.pst.body.substring(0, 33) + "..." 
+      return props.pst.body.substring(0, 33) + "......" 
     })
 
       return { snippt }
